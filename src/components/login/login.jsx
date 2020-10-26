@@ -1,10 +1,26 @@
 import React from "react";
 import loginImg from "../../login.svg";
-
+import axios from 'axios'
 export class Login extends React.Component {
   constructor(props) {
     super(props);
   }
+  handleSubmit = e =>{
+    e.preventDefault();
+
+    const data= {
+      username: this.username,
+      password: this.password
+    };
+//enter the url for backend
+    axios.post('',data)
+      .then(res=> {
+        localStorage.setItem('token',res.data.token)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  };
 
   render() {
     return (
